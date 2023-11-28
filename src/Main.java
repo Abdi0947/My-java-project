@@ -79,8 +79,17 @@ class StudentRegistrationSystem {
 
     public void addStudent(Student student) {
         students.add(student);
-        System.out.println("Student added: " + student.getFirstName() + " " + student.getLastName());
         System.out.println("You are registered successfully.");
+        System.out.println("NAME: " + student.getFirstName().toUpperCase()+ "     " + student.getLastName().toUpperCase());
+        System.out.println("___________________Here is your slip---------------------------------");
+        System.out.println("|Course--------------------------------------|ECTS|-----------|cr.hr.|-------Lestures");
+        System.out.println("|OBJECT ORIENTED..............................| 5  |...........|  3   |.........|TBA");
+        System.out.println("|STATISTIC GRADE..............................| 5  |...........|  3   |.........|TBA");
+        System.out.println("|COMPUTER ORGANIZATION........................| 5  |...........|  3   |.........|TBA");
+        System.out.println("|OPERATING SYSTEM.............................| 7  |...........|  4   |.........|TBA");
+        System.out.println("|NETWORKING...................................| 7  |...........|  4   |.........|TBA");
+        System.out.println("|DATA STRUCTURE...............................| 5  |...........|  3   |.........|TBA");
+        System.out.println(" ");
     }
 
     public void removeStudent(String studentId) {
@@ -101,14 +110,14 @@ class StudentRegistrationSystem {
                 System.out.println("|\t\t\t\t\t\t\t\t\t|");
                 System.out.println("|\t\t     STUDENT INFORMATION\t\t\t|");
                 System.out.println("|\t\t\t\t\t\t\t\t\t|");
-                System.out.println("|Name:\t\t\t\t\t..................." + student.getFirstName() + " " + student.getLastName());
-                System.out.println("|ID:\t\t\t\t\t\t..................." + student.getId());
-                System.out.println("|Address:\t\t\t\t.................." + student.getAddress());
-                System.out.println("|College:\t\t\t\t.................." + student.getCollege());
-                System.out.println("|Department:\t\t\t\t..............." + student.getDepartment());
-                System.out.println("|Student Type:\t\t\t\t............." + getStudentType(student.getDepartment()));
+                System.out.println("|Name:............................." + student.getFirstName() + " " + student.getLastName());
+                System.out.println("|ID:..............................." + student.getId());
+                System.out.println("|Address:.........................." + student.getAddress());
+                System.out.println("|College:.........................." + student.getCollege());
+                System.out.println("|Department:......................." + student.getDepartment());
+                System.out.println("|Student Type:....................." + getStudentType(student.getDepartment()));
                 System.out.println("|\t\t\t\t\t\t\t\t\t|");
-                System.out.println("================================================================");
+
                 return;
             }
         }
@@ -166,7 +175,7 @@ public class Main {
                                 if (id.matches("\\d+/\\d+")) {
                                     break;
                                 } else {
-                                    System.out.println("Invalid ID format. Please enter the ID in the correct format (e.g., 1878/14).");
+                                    System.out.println("Invalid ID format. Please enter the ID in the correct format (e.g., number/year).");
                                 }
                             }
 
