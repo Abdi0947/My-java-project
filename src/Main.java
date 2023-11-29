@@ -9,14 +9,18 @@ class Student {
     private String address;
     private String department;
     private String college;
+    private int semester;
+    private int year;
 
-    public Student(String firstName, String lastName, String id, String address, String department, String college) {
+    public Student(String firstName, String lastName, String id, String address, String department, String college, int semester, int year) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
         this.address = address;
         this.department = department;
         this.college = college;
+        this.semester = semester;
+        this.year = year;
     }
 
     // Getters and setters
@@ -68,6 +72,22 @@ class Student {
     public void setCollege(String college) {
         this.college = college;
     }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 }
 
 class StudentRegistrationSystem {
@@ -80,15 +100,15 @@ class StudentRegistrationSystem {
     public void addStudent(Student student) {
         students.add(student);
         System.out.println("You are registered successfully.");
-        System.out.println("NAME: " + student.getFirstName().toUpperCase()+ "     " + student.getLastName().toUpperCase());
+        System.out.println("NAME: " + student.getFirstName().toUpperCase() + "     " + student.getLastName().toUpperCase());
         System.out.println("___________________Here is your slip---------------------------------");
-        System.out.println("|Course--------------------------------------|ECTS|-----------|cr.hr.|-------Lestures");
-        System.out.println("|OBJECT ORIENTED..............................| 5  |...........|  3   |.........|TBA");
-        System.out.println("|STATISTIC GRADE..............................| 5  |...........|  3   |.........|TBA");
-        System.out.println("|COMPUTER ORGANIZATION........................| 5  |...........|  3   |.........|TBA");
-        System.out.println("|OPERATING SYSTEM.............................| 7  |...........|  4   |.........|TBA");
-        System.out.println("|NETWORKING...................................| 7  |...........|  4   |.........|TBA");
-        System.out.println("|DATA STRUCTURE...............................| 5  |...........|  3   |.........|TBA");
+        System.out.println("|Course--------------------------------------|ECTS|-----------|cr.hr.|-------Lectures");
+        System.out.println("|course--1....................................| - |...........|  -   |.........|TBA");
+        System.out.println("|course--2....................................| - |...........|  -   |.........|TBA");
+        System.out.println("|course--3....................................| - |...........|  -   |.........|TBA");
+        System.out.println("|course--4....................................| - |...........|  -   |.........|TBA");
+        System.out.println("|course--5....................................| - |...........|  -   |.........|TBA");
+        System.out.println("|course--6....................................| - |...........|  -   |.........|TBA");
         System.out.println(" ");
     }
 
@@ -115,7 +135,8 @@ class StudentRegistrationSystem {
                 System.out.println("|Address:.........................." + student.getAddress());
                 System.out.println("|College:.........................." + student.getCollege());
                 System.out.println("|Department:......................." + student.getDepartment());
-                System.out.println("|Student Type:....................." + getStudentType(student.getDepartment()));
+                System.out.println("|Semester:........................." + student.getSemester());
+                System.out.println("|Year:............................." + student.getYear());
                 System.out.println("|\t\t\t\t\t\t\t\t\t|");
 
                 return;
@@ -123,103 +144,72 @@ class StudentRegistrationSystem {
         }
         System.out.println("Sorry, student not found with ID: " + studentId);
     }
-
-    private String getStudentType(String department) {
-        if (department.equalsIgnoreCase("distance")) {
-            return "Distance Education";
-        } else {
-            return "Regular";
-        }
-    }
 }
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
         StudentRegistrationSystem registrationSystem = new StudentRegistrationSystem();
+        Scanner scanner = new Scanner(System.in);
 
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("╔══════════════════════════════════════════════╗");
-            System.out.println("║                                              ║");
-            System.out.println("║         Welcome to the Student Registration  ║");
-            System.out.println("║                  System                      ║");
-            System.out.println("║          prepared by Abdi Debela             ║");
-            System.out.println("╚══════════════════════════════════════════════╝");
-            System.out.println("------------------------------------------------");
-            System.out.println();
+        while (true) {
+            System.out.println("\nSTUDENT REGISTRATION SYSTEM");
+            System.out.println("1. Add Student");
+            System.out.println("2. Remove Student");
+            System.out.println("3. Display Student Information");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
 
-            while (true) {
-                System.out.println("\nPlease select an option:");
-                System.out.println("1. Add a new student");
-                System.out.println("2. Remove a student");
-                System.out.println("3. Display student information");
-                System.out.println("4. Exit");
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter student first name: ");
+                    String firstName = scanner.next();
 
-                System.out.print("Enter your choice: ");
-                try {
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); // Consume the newline character
+                    System.out.print("Enter student last name: ");
+                    String lastName = scanner.next();
 
-                    switch (choice) {
-                        case 1:
-                            System.out.print("Enter student first name: ");
-                            String firstName = scanner.nextLine();
+                    System.out.print("Enter student ID: ");
+                    String id = scanner.next();
 
-                            System.out.print("Enter student last name: ");
-                            String lastName = scanner.nextLine();
+                    System.out.print("Enter student address: ");
+                    String address = scanner.next();
 
-                            String id;
-                            while (true) {
-                                System.out.print("Enter student ID (e.g., 0000/00): ");
-                                id = scanner.nextLine();
+                    System.out.print("Enter student department: ");
+                    String department = scanner.next();
 
-                                if (id.matches("\\d+/\\d+")) {
-                                    break;
-                                } else {
-                                    System.out.println("Invalid ID format. Please enter the ID in the correct format (e.g., number/year).");
-                                }
-                            }
+                    System.out.print("Enter student college: ");
+                    String college = scanner.next();
 
-                            System.out.print("Enter student college: ");
-                            String college = scanner.nextLine();
+                    System.out.print("Enter student semester: ");
+                    int semester = scanner.nextInt();
 
-                            System.out.print("Enter student department : ");
-                            String department = scanner.nextLine();
+                    System.out.print("Enter student year: ");
+                    int year = scanner.nextInt();
 
-                            System.out.print("Enter student address: ");
-                            String address = scanner.nextLine();
+                    Student student = new Student(firstName, lastName, id, address, department, college, semester, year);
+                    registrationSystem.addStudent(student);
+                    break;
 
-                            Student student = new Student(firstName, lastName, id, address, department, college);
-                            registrationSystem.addStudent(student);
-                            break;
+                case 2:
+                    System.out.print("Enter student ID to remove: ");
+                    String removeId = scanner.next();
+                    registrationSystem.removeStudent(removeId);
+                    break;
 
-                        case 2:
-                            System.out.print("Enter student ID to remove: ");
-                            String removeId = scanner.nextLine();
+                case 3:
+                    System.out.print("Enter student ID to display information: ");
+                    String displayId = scanner.next();
+                    registrationSystem.displayStudentInformation(displayId);
+                    break;
 
-                            registrationSystem.removeStudent(removeId);
-                            break;
+                case 4:
+                    System.out.println("Exiting program... Goodbye!");
+                    System.exit(0);
+                    break;
 
-                        case 3:
-                            System.out.print("Enter student ID to display information: ");
-                            String displayId = scanner.nextLine();
-
-                            registrationSystem.displayStudentInformation(displayId);
-                            break;
-
-                        case 4:
-                            System.out.println("Exiting the program...");
-                            System.exit(0);
-
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a number.");
-                }
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
             }
-
-        } catch (Exception e) {
-            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 }
